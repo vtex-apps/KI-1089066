@@ -62,10 +62,11 @@ function createListener(listenerFlag) {
         }
 
         function orderItems() {
-            if (vtexjs.checkout.orderForm.marketingData !== null
+            if ((vtexjs.checkout.orderForm.marketingData !== null
                 && vtexjs.checkout.orderForm.marketingData.coupon !== null
                 && vtexjs.checkout.orderForm.totalizers !== null
-                && vtexjs.checkout.orderForm.totalizers.some(item => item.id === "Tax")) {
+                && vtexjs.checkout.orderForm.totalizers.some(item => item.id === "Tax"))
+                || vtexjs.checkout.orderForm.items.length > 20) {
                 vtexjs.checkout
                     .changeItemsOrdination("GIFT")
                     .then(function (orderForm) {
